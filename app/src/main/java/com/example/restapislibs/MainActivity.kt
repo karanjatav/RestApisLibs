@@ -89,9 +89,9 @@ class MainActivity : AppCompatActivity() {
 
         val jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi::class.java)  //...2
 
-        val call = jsonPlaceHolderApi.getPosts()  //...3
+        val postApi = jsonPlaceHolderApi.getPosts()  //...3
 
-        call.enqueue(object : Callback<Post> {
+        postApi.enqueue(object : Callback<Post> {
             override fun onResponse(call: Call<Post>, response: retrofit2.Response<Post>) {
                 if (!response.isSuccessful) {
                     tvResponseFrom.text = "Code " + response.code()
@@ -107,11 +107,11 @@ class MainActivity : AppCompatActivity() {
                         post.body!!
                     )
                 }
-            }  //...4
+            }  //...5
 
             override fun onFailure(call: Call<Post>, t: Throwable) {
                 tvResponseFrom.text = "Response fail"
-            }  //...5
-        })
+            }  //...6
+        })  //...4
     }
 }
